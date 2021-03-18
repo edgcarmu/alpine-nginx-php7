@@ -1,6 +1,6 @@
 FROM alpine:3.11
 
-LABEL Maintainer="Jabar Digital Service <digital.service@jabarprov.go.id>" \
+LABEL Maintainer="inbox@edgcarmu.me <inbox@edgcarmu.me>" \
       Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.4 based on Alpine Linux (forked from trafex/alpine-nginx-php7)."
 
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
