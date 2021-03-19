@@ -29,6 +29,8 @@ RUN apk --no-cache add \
     php7-session \
     php7-mbstring \
     php7-gd \
+    php7-pdo \
+    php7-pdo_mysql \
     nginx \
     supervisor \
     curl
