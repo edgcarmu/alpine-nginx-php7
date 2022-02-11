@@ -31,9 +31,14 @@ RUN apk --no-cache add \
     php7-gd \
     php7-pdo \
     php7-pdo_mysql \
+    php7-bcmath \
+    php7-gmp  \
+    php7-fileinfo \
     nginx \
     supervisor \
-    curl
+    gmp \
+    curl \
+    yarn
 
 # https://github.com/codecasts/php-alpine/issues/21
 RUN ln -s /usr/bin/php7 /usr/bin/php
