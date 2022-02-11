@@ -3,12 +3,12 @@ FROM alpine:3.11
 LABEL Maintainer="inbox@edgcarmu.me <inbox@edgcarmu.me>" \
       Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.4 based on Alpine Linux (forked from trafex/alpine-nginx-php7)."
 
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://php.hernandev.com/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 # make sure you can use HTTPS
-RUN apk --update add ca-certificates
+RUN apk --update-cache add ca-certificates
 
-RUN echo "https://dl.bintray.com/php-alpine/v3.11/php-7.4" >> /etc/apk/repositories
+RUN echo "https://php.hernandev.com/v3.11/php-7.4" >> /etc/apk/repositories
 
 # Install packages
 RUN apk --no-cache add \
