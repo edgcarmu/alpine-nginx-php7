@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.12.9
 
 LABEL Maintainer="inbox@edgcarmu.me <inbox@edgcarmu.me>" \
       Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.4 based on Alpine Linux (forked from trafex/alpine-nginx-php7)."
@@ -11,7 +11,7 @@ RUN apk --update-cache add ca-certificates
 RUN echo "https://php.hernandev.com/v3.11/php-7.4" >> /etc/apk/repositories
 
 # Install packages
-RUN apk --no-cache add \
+RUN apk update && apk upgrade && apk add --no-cache \
     php7 \
     php7-fpm \
     php7-opcache \
@@ -22,7 +22,6 @@ RUN apk --no-cache add \
     php7-zlib \
     php7-xml \
     php7-phar \
-    php7-intl \
     php7-dom \
     php7-xmlreader \
     php7-ctype \
@@ -33,7 +32,7 @@ RUN apk --no-cache add \
     php7-pdo_mysql \
     php7-bcmath \
     php7-gmp  \
-    php7-fileinfo \
+    php7-iconv \
     nginx \
     supervisor \
     gmp \
