@@ -3,7 +3,7 @@ LABEL Maintainer="Fabian Carvajal <inbox@edgcarmu.me>" \
       Description="Lightweight container with Nginx 1.18 & PHP 7.4 based on Alpine Linux."
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
+RUN apk --no-cache add php7 php7-dev php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-xmlwriter php7-ctype php7-session \
     php7-sysvshm php7-sysvsem php7-sysvmsg php7-sqlite3 php7-simplexml php7-sodium php7-soap php7-ffi php7-pecl-imagick \
     php7-pcntl php7-pgsql php7-posix php7-redis php7-shmop php7-sockets php7-zip php7-pear php7-xsl \
