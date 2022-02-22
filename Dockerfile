@@ -1,52 +1,20 @@
-FROM alpine:3.12.9
+FROM alpine:3.13
+LABEL Maintainer="Fabian Carvajal <inbox@edgcarmu.me>" \
+      Description="Lightweight container with Nginx 1.18 & PHP 7.4 based on Alpine Linux."
 
-LABEL Maintainer="inbox@edgcarmu.me <inbox@edgcarmu.me>" \
-      Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.4 based on Alpine Linux (forked from trafex/alpine-nginx-php7)."
-
-ADD https://php.hernandev.com/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
-# make sure you can use HTTPS
-RUN apk --update-cache add ca-certificates
-
-RUN echo "https://php.hernandev.com/v3.11/php-7.4" >> /etc/apk/repositories
-
-# Install packages
-RUN apk update && apk upgrade && apk add --no-cache \
-    php7 \
-    php7-fpm \
-    php7-opcache \
-    php7-mysqli \
-    php7-json \
-    php7-openssl \
-    php7-curl \
-    php7-zlib \
-    php7-xml \
-    php7-phar \
-    php7-dom \
-    php7-xmlreader \
-    php7-ctype \
-    php7-session \
-    php7-mbstring \
-    php7-gd \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-bcmath \
-    php7-gmp  \
-    php7-iconv \
-    nginx \
-    supervisor \
-    gmp \
-    curl \
-    yarn
-
-# https://github.com/codecasts/php-alpine/issues/21
-RUN ln -s /usr/bin/php7 /usr/bin/php
+# Install packages and remove default server definition
+RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
+    php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-xmlwriter php7-ctype php7-session \
+    php7-sysvshm php7-sysvsem php7-sysvmsg php7-sqlite3 php7-simplexml php7-sodium php7-soap php7-ffi php7-pecl-imagick \
+    php7-pcntl php7-pgsql php7-posix php7-redis php7-shmop php7-sockets php7-zip php7-pear php7-xsl \
+    php7-gmp php7-bcmath php7-tokenizer php7-iconv php7-calendar php7-exif php7-ftp php7-gettext php7-imap \
+    php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-pdo_pgsql php7-mysqlnd php7-fileinfo \
+    php7-msgpack php7-memcached \
+    php7-mbstring php7-gd nginx supervisor curl && \
+    rm /etc/nginx/conf.d/default.conf
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
-
-# Remove default server definition
-RUN rm /etc/nginx/conf.d/default.conf
 
 # Configure PHP-FPM
 COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
